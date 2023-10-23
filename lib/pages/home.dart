@@ -6,7 +6,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("PrivatePin"), backgroundColor: Colors.lightBlue),
+        appBar: AppBar(title: const Text("PrivatePin"), backgroundColor: Colors.blue.shade100),
         drawer: Drawer(
           child: ListView(
             children: [Text("Uno"), Text("Due"), Text("Tre")],
