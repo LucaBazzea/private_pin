@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+
+import "package:private_pin/components/main_menu.dart";
 import "package:private_pin/views/home.dart";
 
 void main() {
@@ -11,11 +13,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Private Pin",
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
-      home: const Home(),
-    );
+        home: Scaffold(
+            appBar: AppBar(title: const Text("Private Pin")),
+            drawer: const MainMenu(),
+            body: const Home()));
   }
 }

@@ -1,5 +1,5 @@
 name: private_pin
-description: "A new Flutter project."
+description: "Privacy respecting friends and family tracker"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -31,7 +31,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  hidden_drawer_menu: ^3.0.1
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
