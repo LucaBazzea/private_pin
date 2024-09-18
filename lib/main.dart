@@ -16,6 +16,6 @@ class App extends StatelessWidget {
         home: Scaffold(
             appBar: AppBar(title: const Text("Private Pin")),
             drawer: const MainMenu(),
-            body: const Home()));
+            body: Home()));
   }
 }
