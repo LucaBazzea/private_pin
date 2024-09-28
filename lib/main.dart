@@ -11,7 +11,16 @@ void main() {
 
 final GoRouter _router = GoRouter(initialLocation: "/", routes: [
   GoRoute(path: "/", name: "home", builder: (context, state) => Home()),
-  GoRoute(path: "/map", name: "map", builder: (context, state) => Map())
+  GoRoute(
+      path: "/map/:userID",
+      name: "map",
+      builder: (context, state) {
+        var userID = state.pathParameters["userID"];
+        if (userID == null) {
+          throw Exception("User ID not provided");
+        }
+        return Map(userID: userID);
+      })
 ]);
 
 class App extends StatelessWidget {

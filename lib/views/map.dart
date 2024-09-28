@@ -6,6 +6,10 @@ import "package:flutter_map_location_marker/flutter_map_location_marker.dart";
 import "package:latlong2/latlong.dart";
 
 class Map extends StatefulWidget {
+  final String userID;
+
+  const Map({super.key, required this.userID});
+
   @override
   _MapState createState() => _MapState();
 }
