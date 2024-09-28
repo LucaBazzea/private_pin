@@ -19,7 +19,7 @@ class Block extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
         child: Container(
-            height: 250,
+            height: 200,
             color: Colors.blueGrey,
             child: Expanded(
                 child: Row(
@@ -27,7 +27,7 @@ class Block extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                   Column(children: [
-                    Text(username),
+                    Text(username, style: const TextStyle(fontSize: 32)),
                     Text("Last Online: $lastOnline"),
                   ]),
                   Text("$lat, $lon")
