@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:go_router/go_router.dart";
 
 import "package:private_pin/components/feed_block.dart";
 
@@ -21,11 +22,15 @@ class Home extends StatelessWidget {
         body: ListView.builder(
             itemCount: _items.length,
             itemBuilder: (context, index) {
-              return Block(
-                  username: _items[index]["username"],
-                  lastOnline: _items[index]["last_online"],
-                  lat: _items[index]["lat"],
-                  lon: _items[index]["lon"]);
+              return GestureDetector(
+                  onTap: () {
+                    context.go("/map");
+                  },
+                  child: Block(
+                      username: _items[index]["username"],
+                      lastOnline: _items[index]["last_online"],
+                      lat: _items[index]["lat"],
+                      lon: _items[index]["lon"]));
             }));
   }
 }
