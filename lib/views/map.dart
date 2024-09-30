@@ -17,6 +17,7 @@ class Map extends StatefulWidget {
 class _MapState extends State<Map> {
   final MapController _mapController = MapController();
   List<Marker> _markers = [];
+  var user;
 
   @override
   void initState() {
@@ -25,32 +26,38 @@ class _MapState extends State<Map> {
   }
 
   Future<void> _updateMap() async {
-    final response = await http.get(Uri.parse('https://your-api.com/data'));
-    final jsonData = jsonDecode(response.body);
+    // final response = await http.get(Uri.parse('https://your-api.com/data'));
+    // final jsonData = jsonDecode(response.body);
+    user = {
+      "id": "1",
+      "username": "GordonFreeman",
+      "last_online": "14:42",
+      "lat": 42.756,
+      "lon": 19.373
+    };
 
-    // Update the map with new data
     setState(() {
-      _markers = jsonData.map((feature) {
-        return Marker(
+      _markers = [
+        Marker(
           width: 80.0,
           height: 80.0,
-          point: LatLng(feature['lat'], feature['lon']),
+          point: LatLng(user["lat"], user["lon"]),
           child: const Icon(Icons.location_pin),
-        );
-      }).toList();
+        )
+      ];
     });
 
     // Schedule the next update
-    Future.delayed(const Duration(seconds: 10), _updateMap);
+    //   Future.delayed(const Duration(seconds: 10), _updateMap);
   }
 
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
       mapController: _mapController,
-      options: MapOptions(
-        initialCenter: LatLng(37.7749, -122.4194),
-        initialZoom: 12.0,
+      options: const MapOptions(
+        initialCenter: LatLng(41.90586517413028, 12.482428543480937),
+        initialZoom: 4,
       ),
       children: [
         TileLayer(
