@@ -53,19 +53,27 @@ class _MapState extends State<Map> {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterMap(
-      mapController: _mapController,
-      options: const MapOptions(
-        initialCenter: LatLng(41.90586517413028, 12.482428543480937),
-        initialZoom: 4,
-      ),
-      children: [
-        TileLayer(
-          urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-          subdomains: const ["a", "b", "c"],
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("PrivatePin"),
+          centerTitle: true,
+          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.menu))],
+          backgroundColor: Colors.blueGrey,
+          elevation: 0,
         ),
-        MarkerLayer(markers: _markers),
-      ],
-    );
+        body: FlutterMap(
+          mapController: _mapController,
+          options: const MapOptions(
+            initialCenter: LatLng(41.90586517413028, 12.482428543480937),
+            initialZoom: 4,
+          ),
+          children: [
+            TileLayer(
+              urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+              subdomains: const ["a", "b", "c"],
+            ),
+            MarkerLayer(markers: _markers),
+          ],
+        ));
   }
 }

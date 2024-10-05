@@ -38,6 +38,13 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: const Text("PrivatePin"),
+          centerTitle: true,
+          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.menu))],
+          backgroundColor: Colors.blueGrey,
+          elevation: 0,
+        ),
         body: ListView.builder(
             itemCount: _items.length,
             itemBuilder: (context, index) {
