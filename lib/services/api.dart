@@ -1,9 +1,10 @@
 import "dart:convert";
 import "package:http/http.dart" as http;
 
-Future<User> getUser() async {
-  final response =
-      await http.get(Uri.parse("http://127.0.0.1:8000/app/get-user?id=1"));
+Future<User> getUser(userID) async {
+  print("API: $userID");
+  final response = await http
+      .get(Uri.parse("http://127.0.0.1:8000/app/get-user?id=$userID"));
 
   if (response.statusCode == 200) {
     return User.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
@@ -34,9 +35,4 @@ class User {
         lat: json["lat"],
         lon: json["lon"]);
   }
-}
-
-main() async {
-  final user = await getUser();
-  print(user.username);
 }
