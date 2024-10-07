@@ -1,9 +1,9 @@
-import "dart:convert";
 import "package:flutter/material.dart";
-import "package:http/http.dart" as http;
 import "package:flutter_map/flutter_map.dart";
 import "package:flutter_map_location_marker/flutter_map_location_marker.dart";
 import "package:latlong2/latlong.dart";
+
+import "package:private_pin/services/api.dart";
 
 class Map extends StatefulWidget {
   final String userID;
@@ -26,29 +26,23 @@ class _MapState extends State<Map> {
   }
 
   Future<void> _updateMap() async {
-    // final response = await http.get(Uri.parse('https://your-api.com/data'));
-    // final jsonData = jsonDecode(response.body);
-    user = {
-      "id": "1",
-      "username": "GordonFreeman",
-      "last_online": "14:42",
-      "lat": 42.756,
-      "lon": 19.373
-    };
+    user = await getUser(widget.userID);
 
-    setState(() {
-      _markers = [
-        Marker(
-          width: 80.0,
-          height: 80.0,
-          point: LatLng(user["lat"], user["lon"]),
-          child: const Icon(Icons.location_pin),
-        )
-      ];
-    });
+    if (mounted) {
+      setState(() {
+        _markers = [
+          Marker(
+            width: 80.0,
+            height: 80.0,
+            point: LatLng(user.lat, user.lon),
+            child: const Icon(Icons.location_pin),
+          )
+        ];
+      });
+    }
 
     // Schedule the next update
-    //   Future.delayed(const Duration(seconds: 10), _updateMap);
+    Future.delayed(const Duration(seconds: 10), _updateMap);
   }
 
   @override
