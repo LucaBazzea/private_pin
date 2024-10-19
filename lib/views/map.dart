@@ -1,3 +1,4 @@
+import "dart:async";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 import "package:flutter_map/flutter_map.dart";
@@ -19,6 +20,7 @@ class _MapState extends State<Map> {
   final MapController _mapController = MapController();
   List<Marker> _markers = [];
   var user;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -43,7 +45,13 @@ class _MapState extends State<Map> {
     }
 
     // Schedule the next update
-    Future.delayed(const Duration(seconds: 10), _updateMap);
+    _timer = Timer(const Duration(seconds: 10), _updateMap);
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override
