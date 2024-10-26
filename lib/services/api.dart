@@ -1,7 +1,7 @@
 import "dart:convert";
 import "package:http/http.dart" as http;
 
-var url = "127.0.0.1:8000/";
+var url = "http://127.0.0.1:8000";
 
 Future<User> getUser(userID) async {
   print("API: $userID");
@@ -60,18 +60,22 @@ List<Connection> connections = [];
 
 Future getConnections(String userID) async {
   var response =
-      await http.get(Uri.http(url, "app/get-connections?user_id=$userID"));
+      await http.get(Uri.parse("$url/app/get-connections?user_id=$userID"));
   var jsonData = jsonDecode(response.body);
+  print(jsonData);
 
-  for (var connection in jsonData) {
-    final connections = Connection(
-      id: connection["id"],
-      username: connection["username"],
-      email: connection["email"],
-      lat: connection["lat"],
-      lon: connection["lon"],
-      lastOnline: DateTime.parse(connection["last_online"]),
+  for (var connectionItem in jsonData) {
+    print(connectionItem["id"]);
+    final connection = Connection(
+      id: connectionItem["id"],
+      username: connectionItem["username"],
+      email: connectionItem["email"],
+      lat: connectionItem["lat"],
+      lon: connectionItem["lon"],
+      lastOnline: DateTime.parse(connectionItem["last_online"]),
     );
+
+    connections.add(connection);
   }
   print(connections);
 }
