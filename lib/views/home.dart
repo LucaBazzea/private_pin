@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 
 import "package:private_pin/components/feed_block.dart";
-import "package:private_pin/services/api.dart";
+import "package:private_pin/selectors.dart";
 
 class Home extends StatelessWidget {
   @override
