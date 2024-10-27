@@ -59,6 +59,8 @@ class Connection {
 List<Connection> connections = [];
 
 Future getConnections(String userID) async {
+  connections.clear();
+
   var response =
       await http.get(Uri.parse("$url/app/get-connections?user_id=$userID"));
   var jsonData = jsonDecode(response.body);
