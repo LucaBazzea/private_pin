@@ -62,10 +62,8 @@ Future getConnections(String userID) async {
   var response =
       await http.get(Uri.parse("$url/app/get-connections?user_id=$userID"));
   var jsonData = jsonDecode(response.body);
-  print(jsonData);
 
   for (var connectionItem in jsonData) {
-    print(connectionItem["id"]);
     final connection = Connection(
       id: connectionItem["id"],
       username: connectionItem["username"],
@@ -77,11 +75,4 @@ Future getConnections(String userID) async {
 
     connections.add(connection);
   }
-  print(connections);
-}
-
-void main() async {
-  final userId = "1";
-  final connections = await getConnections(userId);
-  print(connections);
 }
