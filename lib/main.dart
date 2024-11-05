@@ -1,6 +1,8 @@
+import "dart:async";
 import "package:flutter/material.dart";
 import "package:go_router/go_router.dart";
 
+import "package:private_pin/services.dart";
 import "package:private_pin/components/main_menu.dart";
 import "package:private_pin/views/home.dart";
 import "package:private_pin/views/map.dart";
@@ -23,8 +25,41 @@ final GoRouter _router = GoRouter(initialLocation: "/", routes: [
       })
 ]);
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  Timer? _timer;
+  bool uploadLocation = true;
+
+  @override
+  void initState() {
+    super.initState();
+    if (uploadLocation) {
+      _startLocationUpdates();
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  void _startLocationUpdates() {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      getCurrentLocation().then((position) {
+        print("User Current Location, main");
+        print(position);
+      }).catchError((error) {
+        print(error);
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
