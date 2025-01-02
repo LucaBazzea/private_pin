@@ -1,6 +1,19 @@
 import "dart:convert";
+import "dart:async";
 import "package:http/http.dart" as http;
 import "package:geolocator/geolocator.dart";
+import "package:shared_preferences/shared_preferences.dart";
+
+
+Future<void> setSessionCookie(String sessionCookie) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString("sessionCookie", sessionCookie);
+}
+
+Future<String?> getSessionCookie() async {
+  final prefs = await SharedPreferences.getInstance();
+  return prefs.getString("sessionCookie");
+}
 
 Future<Position> getCurrentLocation() async {
   bool serviceEnabled;

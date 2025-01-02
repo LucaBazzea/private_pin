@@ -3,10 +3,18 @@ import "package:go_router/go_router.dart";
 
 import "package:private_pin/components/feed_block.dart";
 import "package:private_pin/selectors.dart";
+import "package:private_pin/services.dart";
+
 
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String? sessionCookie = getSessionCookie();
+
+    if (sessionCookie == null) {
+      context.goNamed("email_input");
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("PrivatePin"),
