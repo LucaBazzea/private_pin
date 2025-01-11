@@ -16,6 +16,7 @@ class Home extends StatelessWidget {
 
           if (sessionCookie == null) {
             context.goNamed("email_input");
+            return const SizedBox();
           }
 
           return Scaffold(
@@ -55,7 +56,8 @@ class Home extends StatelessWidget {
             ),
           );
         } else {
-          return const Center(child: CircularProgressIndicator());
+          context.goNamed("email_input");
+          return const SizedBox();
         }
       },
     );
