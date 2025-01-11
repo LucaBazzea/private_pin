@@ -5,7 +5,22 @@ import "package:private_pin/components/feed_block.dart";
 import "package:private_pin/selectors.dart";
 import "package:private_pin/services.dart";
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    getSessionCookie().then((sessionCookie) {
+      if (sessionCookie == null) {
+        context.goNamed("email_input");
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
