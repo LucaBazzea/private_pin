@@ -4,6 +4,7 @@ import "package:go_router/go_router.dart";
 
 import "package:private_pin/services.dart";
 import "package:private_pin/components/main_menu.dart";
+import "package:private_pin/views/email_input.dart";
 import "package:private_pin/views/home.dart";
 import "package:private_pin/views/map.dart";
 
@@ -22,7 +23,11 @@ final GoRouter _router = GoRouter(initialLocation: "/", routes: [
           throw Exception("User ID not provided");
         }
         return Map(userID: userID);
-      })
+      }),
+  GoRoute(
+      path: "/email_input",
+      name: "email_input",
+      builder: (context, state) => EmailInput())
 ]);
 
 class App extends StatefulWidget {
