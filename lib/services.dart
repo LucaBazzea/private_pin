@@ -4,7 +4,6 @@ import "package:http/http.dart" as http;
 import "package:geolocator/geolocator.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
-
 Future<void> setSessionCookie(String sessionCookie) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString("sessionCookie", sessionCookie);
@@ -36,9 +35,6 @@ Future<Position> getCurrentLocation() async {
     return Future.error(
         "Location permissions are permanently denied, we cannot request permissions");
   }
-
-  print("User Current Location");
-  print(Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high));
 
   return await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high);
